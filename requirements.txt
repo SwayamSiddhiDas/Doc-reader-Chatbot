@@ -1,0 +1,8 @@
+streamlit>=1.31.0
+chromadb>=0.4.22
+groq>=0.4.2
+langchain>=0.1.6
+langchain-text-splitters>=0.0.1
+sentence-transformers>=2.3.1
+requests>=2.31.0
+pydantic>=2.0.0

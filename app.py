@@ -1,8 +1,9 @@
+# app.py - Fixed imports
 import streamlit as st
 import requests
 import chromadb
 from chromadb.utils import embedding_functions
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter  # FIXED LINE
 from groq import Groq
 
 # ============ DOCUMENT LOADER ============
@@ -61,13 +62,12 @@ class RAGChatbot:
         self.vector_store = vector_store
         self.client = Groq(api_key=api_key)
         self.model = "llama-3.1-8b-instant"
-        self.conversation_history = []
     
     def generate_response(self, user_query):
         try:
             retrieval_results = self.vector_store.retrieve(user_query, top_k=3)
         except Exception as e:
-            return f"Error retrieving information: {str(e)}"
+            return f"Error: {str(e)}"
         
         if not retrieval_results['documents']:
             return "I couldn't find relevant information in the document."
@@ -77,9 +77,9 @@ class RAGChatbot:
             context += f"\n[Section {meta['chunk_id']}]: {doc}\n"
         
         system_prompt = """Answer questions based solely on the provided context. 
-Always cite sources using [Section X]. If info isn't in context, say so clearly."""
+Always cite sources using [Section X]. If info isn't in context, say so."""
         
-        user_prompt = f"""Context:\n{context}\n\nQuestion: {user_query}\n\nAnswer with inline citations [Section X]:"""
+        user_prompt = f"""Context:\n{context}\n\nQuestion: {user_query}\n\nAnswer with citations [Section X]:"""
         
         try:
             response = self.client.chat.completions.create(
@@ -93,11 +93,10 @@ Always cite sources using [Section X]. If info isn't in context, say so clearly.
             )
             return response.choices[0].message.content
         except Exception as e:
-            return f"Error generating response: {str(e)}"
+            return f"Error: {str(e)}"
 
 # ============ STREAMLIT UI ============
 st.set_page_config(page_title="RAG Chatbot", page_icon="🤖", layout="wide")
-
 st.markdown("""<style>.stApp {background-color: #0e1117;}</style>""", unsafe_allow_html=True)
 
 if 'vector_store' not in st.session_state:
@@ -125,7 +124,7 @@ with st.sidebar:
                 )
                 st.session_state.chatbot = RAGChatbot(st.session_state.vector_store, api_key)
                 st.session_state.doc_loaded = True
-                st.success(f"✅ Loaded! {chunks_count} chunks created.")
+                st.success(f"✅ Loaded! {chunks_count} chunks.")
             except Exception as e:
                 st.error(f"❌ Error: {str(e)}")
     

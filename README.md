@@ -4,7 +4,7 @@ AI-powered chatbot that reads Google Docs and answers questions with citations u
 
 ## 🚀 Live Demo
 - **Deployed App:** [https://doc-reader-chatbot-xnduqvcdtsqisyyzi5rvya.streamlit.app/](https://doc-reader-chatbot-xnduqvcdtsqisyyzi5rvya.streamlit.app/)
-- **Demo Video:** [https://drive.google.com/file/d/1TnFcu1ogMgEr8fDjHCJue9gCqyBxcbSP/view?usp=sharing](https://drive.google.com/file/d/1TnFcu1ogMgEr8fDjHCJue9gCqyBxcbSP/view?usp=sharing)
+- **Demo Video:** [https://drive.google.com/file/d/1M8nWsE-d1oS0s0XN4JwpNVXT_wmRniov/view?usp=sharing](https://drive.google.com/file/d/1M8nWsE-d1oS0s0XN4JwpNVXT_wmRniov/view?usp=sharing)
 - **GitHub Repo:** https://github.com/SwayamSiddhiDas/doc-reader-chatbot
 
 ## ✨ Features

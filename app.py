@@ -1,4 +1,4 @@
-# app.py - Fixed imports
+
 import streamlit as st
 import requests
 import chromadb
@@ -6,7 +6,7 @@ from chromadb.utils import embedding_functions
 from langchain_text_splitters import RecursiveCharacterTextSplitter  # FIXED LINE
 from groq import Groq
 
-# ============ DOCUMENT LOADER ============
+# doc loacder
 def extract_doc_id(url):
     if '/d/' in url:
         return url.split('/d/')[1].split('/')[0]
@@ -56,7 +56,7 @@ class VectorStore:
             'distances': results['distances'][0]
         }
 
-# ============ CHATBOT ============
+# chatbot
 class RAGChatbot:
     def __init__(self, vector_store, api_key):
         self.vector_store = vector_store
@@ -95,7 +95,7 @@ Always cite sources using [Section X]. If info isn't in context, say so."""
         except Exception as e:
             return f"Error: {str(e)}"
 
-# ============ STREAMLIT UI ============
+# streamlit UI
 st.set_page_config(page_title="RAG Chatbot", page_icon="🤖", layout="wide")
 st.markdown("""<style>.stApp {background-color: #0e1117;}</style>""", unsafe_allow_html=True)
 
@@ -151,5 +151,6 @@ else:
                 st.markdown(response)
         
         st.session_state.messages.append({"role": "assistant", "content": response})
+
 
 
